@@ -1,0 +1,84 @@
+<p>
+    trip-entry-grid works!
+</p>
+<form [formGroup]="tripForm">
+    <table class="datatable datatableL">
+        <tr>
+            <th><a ng-click="gc.tripSort='tripDate_';gc.tripRev=!gc.tripRev">Trip Date</a></th>
+            <th>Airport</th>
+            <th>Trans Type</th>
+            <th>Group Name</th>
+            <th>Group Size</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let control of tripForms.controls; let i = index"
+         [formGroup]="control">
+            <td class="date-col">
+                <div class="input-group">
+                    <input type="text" ngbDatepicker #d="ngbDatepicker" class="form-control date-box"
+                        formControlName="tripDate" required [displayMonths]="'2'">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="input-group">
+                    <app-arpt-lookup (onArptSelect)='arptSelect($event)' [parentForm]="control"
+                        [formFieldName]="'airport'">
+                    </app-arpt-lookup>
+                </div>
+            </td>
+            <td>
+                <select class="form-control" id="transType" required formControlName="transTypeId" required>
+                    <option *ngFor="let tran of refService.ref.transTypes" [ngValue]="tran.id">{{tran.text}}</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" class="form-control" formControlName="groupName" required>
+            </td>
+            <td>
+                <input type="number" class="form-control group-size-box" formControlName="groupSize">
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-xs" (click)="save(i,control)"
+                    [disabled]="!(control.dirty && control.valid)">
+                    Save
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-secondary btn-xs" (click)="cancel(i)"
+                    [disabled]="!control.dirty">
+                    Cancel
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning  btn-xs" (click)="delete(i)"
+                    *ngIf="!trip.list[i].isNew">
+                    Delete
+                </button>
+            </td>
+            <!--<td>
+                <button type="button" class="btn btn-outline-success btn-xs" (click)="save(i,control)"
+                    [disabled]="!(control.dirty && control.valid)">
+                    <i class="material-icons" >save</i>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-danger btn-xs" (click)="cancel(i)"
+                    [disabled]="!control.dirty">
+                    <i class="material-icons" >cancel</i>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-warning  btn-xs" (click)="delete(i, control)"
+                    *ngIf="!trip.list[i].isNew">
+                    <i class="material-icons" >delete</i>
+                </button>
+            </td>-->
+
+        </tr>
+    </table>
+</form>

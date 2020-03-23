@@ -1,0 +1,42 @@
+<div>
+    <button type="button" class="btn btn-primary" (click)="addTrip()">
+      Add New Trip
+    </button>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="master-detail-list">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            *ngFor="let model of trip.list; let i = index" (click)="editTrip(model)"
+            [ngClass]="{'active': this.trip.model == model}">
+            <div>
+              <h5>{{model.tripDate | date : "MM/dd/yyyy"}}, {{model.airport.text}} - {{model.airport.text2}}</h5>
+              <p>{{model.transTypeDesc}}, {{model.groupName}}</p>
+            </div>
+            <span class="badge badge-primary badge-pill">{{model.groupSize}}</span>
+            <!-- <h4>
+          <b>{{model.tripDate | date : "MM/dd/yyyy"}} </b>
+          <b>{{model.airport?.text}}</b>
+        </h4>
+        {{model.airport?.text2}}
+        <p>{{model.transTypeDesc}}</p>
+        <p>{{model.groupName}} {{model.groupSize}}</p> -->
+            <!-- <button type="button" class="btn btn-outline-primary btn-sm" (click)="edit(model)">Edit</button>
+      <button type="button" class="btn btn-outline-warning btn-sm" (click)="delete(model)">Delete</button> -->
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="max-width:300px" *ngIf="trip.model">
+          <app-trip-form
+          [model]="trip.model"
+          [enableDelete]="true"
+          (save)="saveTrip($event)"
+          (cancel)="cancel($event)"
+          (delete)="deleteTrip($event)"
+          ></app-trip-form>
+      </div>
+    </div>
+  </div>

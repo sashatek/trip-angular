@@ -1,0 +1,19 @@
+.date-box {
+	width: 110px;
+}
+
+.arpt-name{
+    white-space:nowrap;
+}
+
+.date-col{
+    white-space:nowrap;
+	width: 170px;
+}
+
+.iata-box {
+	width: 70px;
+}
+.group-size-box {
+	width: 70px;
+}

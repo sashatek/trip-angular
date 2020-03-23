@@ -1,0 +1,8 @@
+<div [formGroup]="parentForm">
+<input id="typeahead-http" type="text" class="form-control iata-box" [ngbTypeahead]="lookupArpt"
+  placeholder="IATA" [inputFormatter]="formatter" [resultFormatter]="formatterr" name="iata" (selectItem)="select($event)"
+  onfocus="this.select();" onmouseup="return false;" [formControlName]="formFieldName"  required/>
+
+  <span *ngIf="searching">searching...</span>
+  <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+</div>

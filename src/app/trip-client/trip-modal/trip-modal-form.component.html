@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <app-trip-form [model]="model" [enableDelete]="false" [showButtons]="false" (save)="saveTrip($event)"
+    (cancel)="cancel()"></app-trip-form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="saveClick()" [disabled]="!(isDirty() && isValid())">Save
+    changes</button>
+  <button type="button" class="btn btn-warning" (click)="cancel()">Cancel</button>
+</div>

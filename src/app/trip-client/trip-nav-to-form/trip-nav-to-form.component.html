@@ -1,0 +1,31 @@
+<div *ngIf="!showForm">
+    <div>
+        <button type="button" class="btn btn-primary" (click)="addTrip()">
+            Add New Trip
+        </button>
+    </div>
+  <div *ngFor="let model of trip.list; let i = index" class="tripList">
+    <h4>
+      <b>{{model.tripDate | date : "MM/dd/yyyy"}} </b>
+      <b>{{model.airport?.text}}</b>
+    </h4>
+    {{model.airport?.text2}}
+    <p>{{model.transTypeDesc}}</p>
+    <p>{{model.groupName}} {{model.groupSize}}</p>
+    <button type="button" class="btn btn-link" (click)="editTrip(model)">Edit</button>
+    <button type="button" class="btn btn-link" (click)="deleteTrip(model)">Delete</button>
+
+  </div>
+</div>
+
+<div class="col"  *ngIf="showForm && trip.model">
+    <div style="max-width:300px" *ngIf="trip.model">
+        <app-trip-form
+        [model]="trip.model"
+        [enableDelete]="false"
+        (save)="saveTrip($event)"
+        (cancel)="cancel($event)"
+        (selete)="deleteTrip($event)"
+        ></app-trip-form>
+    </div>
+  </div>

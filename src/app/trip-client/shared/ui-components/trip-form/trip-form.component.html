@@ -1,0 +1,58 @@
+<form [formGroup]="tripForm" novalidate>
+    <div>
+        <div class="form-group">
+            <label for="tripDate" class="control-label">Trip Date</label>
+            <div class="input-group">
+                <input type="text" ngbDatepicker #d="ngbDatepicker" class="form-control date-box"
+                    formControlName="tripDate" required [displayMonths]="'2'">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="airportId" class="control-label">Airport</label>
+            <app-arpt-lookup (onArptSelect)='arptSelect($event)' 
+            [parentForm]="tripForm" [formFieldName]="'airport'">
+            </app-arpt-lookup>
+        </div>
+        <!-- <div class="form-group">
+          <label for="airportId" class="control-label">Airport Name</label>
+          <div class="form-control-static">
+              {{model.airport?.text2}}
+          </div>
+      </div> -->
+        <div class="form-group">
+            <label for="transTypeId" class="control-label">Transportation</label>
+            <select class="form-control" id="transType" required formControlName="transTypeId"
+                (change)="onTransTypeChange($event, model)" required>
+                <option *ngFor="let tran of refDataService.ref.transTypes" [ngValue]="tran.id">{{tran.text}}</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="groupName" class="control-label">Group Name</label>
+                    <input type="text" class="form-control" formControlName="groupName" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="groupSize" class="control-label">Size</label>
+                    <input type="number" class="form-control groupSize" formControlName="groupSize">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pull-left" *ngIf="showButtons">
+        <button type="button" class="btn btn-primary mr-2" (click)="saveTrip()"
+            [disabled]="!(tripForm.dirty && tripForm.valid)">
+            Save
+        </button>
+        <button type="button" class="btn btn-secondary mr-2" (click)="cancelTrip()">Cancel</button>
+        <button type="button" class="btn btn-warning" (click)="deleteTrip()" *ngIf="model && !model.isNew && enableDelete">
+            Delete
+        </button>
+
+    </div>
+</form>
