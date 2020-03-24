@@ -1,2 +1,56 @@
-<h2>Entry Grid</h2>
-<app-trip-nav-to-form></app-trip-nav-to-form>
+<div class="container">
+    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="viewMode">
+        <label ngbButtonLabel class="btn-outline-primary  mr-1">
+            <input ngbButton type="radio" [value]="1"> Entry Grid
+        </label>
+        <label ngbButtonLabel class="btn-outline-primary  mr-1">
+            <input ngbButton type="radio" [value]="2"> Modal Form
+        </label>
+        <label ngbButtonLabel class="btn-outline-primary  mr-1">
+            <input ngbButton type="radio" [value]="3"> Master-Detail
+        </label>
+        <label ngbButtonLabel class="btn-outline-primary  mr-1">
+            <input ngbButton type="radio" [value]="5"> Nav to Form
+        </label>
+    </div>
+
+    <div class="d-inline-block">
+        <div ngbDropdown class="d-inline-block  mr-2">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" (click)="setView(1)">Entry Grid</button>
+                <button class="dropdown-item" (click)="setView(2)">Modal Form</button>
+                <button class="dropdown-item" (click)="setView(3)">Master-Detail</button>
+                <button class="dropdown-item" (click)="setView(5)">Nav to Form</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px;">
+        <div *ngIf="viewMode===1">
+            <h2>Entry Grid</h2>
+            <app-trip-entry-grid></app-trip-entry-grid>
+        </div>
+        <div *ngIf="viewMode===2">
+            <h2>Modal</h2>
+            <div>
+                <app-trip-modal></app-trip-modal>
+            </div>
+            <!-- <trip-entry-grid data-ds="ac.ds" search="ac.searchText"></trip-entry-grid> -->
+        </div>
+        <div *ngIf="viewMode===4">
+            <h2>Form</h2>
+            <div class="col-3">
+                <app-trip-form></app-trip-form>
+            </div>
+            <!-- <trip-entry-grid data-ds="ac.ds" search="ac.searchText"></trip-entry-grid> -->
+        </div>
+        <div *ngIf="viewMode===3">
+            <h2>Master-Detail</h2>
+            <app-trip-master-detail></app-trip-master-detail>
+        </div>
+        <div *ngIf="viewMode===5">
+            <h2>Navigate to a Form</h2>
+            <app-trip-nav-to-form></app-trip-nav-to-form>
+        </div>
+    </div>
+</div>
