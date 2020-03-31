@@ -1,11 +1,11 @@
-import { NgbDate, NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
-import { Injectable } from "@angular/core";
-import { ILookupItem } from "./LooupItem";
+import { NgbDate, NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { Injectable } from '@angular/core';
+import { ILookupItem } from './LooupItem';
 
 
-export function isoToNgbDate(isoDate: string): NgbDate{
+export function isoToNgbDate(isoDate: string): NgbDate {
     if (isoDate) {
-        var date = new Date(isoDate);
+        const date = new Date(isoDate);
         return new NgbDate(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate());
     }
     return null;
@@ -23,7 +23,7 @@ export class NgbUTCStringAdapter extends NgbDateAdapter<string> {
 
   toModel(date: NgbDateStruct): string {
     return date ? date.year.toString() + '-' + String('00' + date.month).slice(-2)
-                            + '-' + String('00' + date.day).slice(-2) : null;
+                            + '-' + String('00' + date.day).slice(-2) + 'T00:00:00' : null;
   }
 }
 
@@ -31,7 +31,7 @@ function padNumber(value: number) {
   if (isNumber(value)) {
       return `0${value}`.slice(-2);
   } else {
-      return "";
+      return '';
   }
 }
 
@@ -56,41 +56,41 @@ export class NgbDateFRParserFormatter extends NgbDateParserFormatter {
           } else if (dateParts.length === 3 && isNumber(dateParts[0]) && isNumber(dateParts[1]) && isNumber(dateParts[2])) {
               return {year: toInteger(dateParts[2]), month: toInteger(dateParts[0]), day: toInteger(dateParts[1])};
           }
-      }   
+      }
       return null;
   }
 
   format(date: NgbDateStruct): string {
-      let stringDate: string = ""; 
-      if(date) {
-        stringDate += isNumber(date.month) ? padNumber(date.month) + "/" : "";
-        stringDate += isNumber(date.day) ? padNumber(date.day) + "/" : "";
-          stringDate += date.year;
+      let stringDate = '';
+      if (date) {
+        stringDate += isNumber(date.month) ? padNumber(date.month) + '/' : '';
+        stringDate += isNumber(date.day) ? padNumber(date.day) + '/' : '';
+        stringDate += date.year;
       }
       return stringDate;
   }
 
 }
 
-export function findRef(ref:ILookupItem[], value: number) : ILookupItem {
+export function findRef(ref: ILookupItem[], value: number): ILookupItem {
   for (const item of ref) {
     if (item.id === value) {
       return item;
     }
   }
-  return {id:-1, text: "Error"};
+  return {id: -1, text: 'Error'};
 }
 
-function clone(): any {
-  var cloneObj = new (<any>this.constructor());
-  for (var attribut in this) {
-      if (typeof this[attribut] === "object") {
-          cloneObj[attribut] = this.clone();
-      } else {
-          cloneObj[attribut] = this[attribut];
-      }
-  }
-//   const obj1 = { param: "value" };
-// const obj2 = { ...obj1 };
-  return cloneObj;
-}
+// function clone(): any {
+//   const cloneObj = new ( this.constructor() as any);
+//   for (const attribut in this) {
+//       if (typeof this[attribut] === 'object') {
+//           cloneObj[attribut] = this.clone();
+//       } else {
+//           cloneObj[attribut] = this[attribut];
+//       }
+//   }
+// //   const obj1 = { param: "value" };
+// // const obj2 = { ...obj1 };
+//   return cloneObj;
+// }

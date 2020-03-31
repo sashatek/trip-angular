@@ -1,16 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, SimpleChanges } from '@angular/core';
-import { NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbTypeaheadSelectItemEvent, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
-import { Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap, switchMap, catchError } from 'rxjs/operators';
-import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { TripModel } from '../../models/TripModel';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbDateAdapter, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ILookupItem } from '../../models/LooupItem';
-import { TripService } from '../../web-services/trip.service';
+import { TripModel } from '../../models/TripModel';
+import { NgbDateFRParserFormatter, NgbUTCStringAdapter } from '../../models/Utils';
 import { ArptLookupService } from '../../web-services/arpt-lookup.service';
 import { RefDataService } from '../../web-services/ref-data.service';
-import { NgbUTCStringAdapter, NgbDateFRParserFormatter } from '../../models/Utils';
+import { TripService } from '../../web-services/trip.service';
 
 @Component({
   selector: 'app-trip-form',

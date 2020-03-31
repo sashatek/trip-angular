@@ -30,7 +30,7 @@
             </td>
             <td>
                 <select class="form-control" id="transType" required formControlName="transTypeId" required>
-                    <option *ngFor="let tran of refService.ref.transTypes" [ngValue]="tran.id">{{tran.text}}</option>
+                    <option *ngFor="let tran of refDataService.refData.transTypes" [ngValue]="tran.id">{{tran.text}}</option>
                 </select>
             </td>
             <td>

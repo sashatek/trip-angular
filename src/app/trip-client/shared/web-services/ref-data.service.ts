@@ -11,7 +11,7 @@ import { RefDataModel } from '../models/RefDataModel';
 })
 export class RefDataService {
 
-    ref: RefDataModel = null;
+    refData: RefDataModel = null;
 
     constructor(private http: HttpClient, private globals: Globals) { }
 
@@ -26,7 +26,7 @@ export class RefDataService {
     }
 
     onGetRefs = (ref: RefDataModel) => {
-        this.ref = ref;
+        this.refData = ref;
     }
 
     lookup(term: string) {

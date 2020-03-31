@@ -30,7 +30,7 @@ export class TripService {
     for (const trip of trips) {
       // trip.tripDate_ = new Date(trip.tripDate);
       // trip.tripDate_ = new Date(Date.UTC(trip.tripDate_.getUTCFullYear(), trip.tripDate_.getUTCMonth(), trip.tripDate_.getUTCDate()));
-      trip.tripDate_ = isoToNgbDate(trip.tripDate);
+      // trip.tripDate_ = isoToNgbDate(trip.tripDate);
       // trip.transTypeDesc = findRef()
       trip.isNew = false;
    }

@@ -27,11 +27,8 @@ export class TripEntryGridComponent implements OnInit {
     tripForm: FormGroup = null;
     tripForms: FormArray;
 
-    // date: NgbDateStruct = { year: 1789, month: 7, day: 14 };
-    date: NgbDate = new NgbDate(1789, 10, 14);
-
     constructor(private tripService: TripService,
-                public refService: RefDataService,
+                public refDataService: RefDataService,
                 private fb: FormBuilder) {
         this.tripForm = fb.group({
             tripForms: fb.array([])
@@ -70,20 +67,8 @@ export class TripEntryGridComponent implements OnInit {
         this.addLine();
     }
 
-    arptSelect($event) {
-
-    }
-
-    select(event: NgbTypeaheadSelectItemEvent) {
-        // this.modelChange.emit(event.item as ILookupItem);
-
-    }
-
-    formatter(result: ILookupItem): string {
-        return result.text; // + " " + result.text2;
-    }
-    formatterr(result: ILookupItem): string {
-        return result.text + ' ' + result.text2;
+    arptSelect(event: NgbTypeaheadSelectItemEvent) {
+        // Place holder
     }
 
     // CRUD
