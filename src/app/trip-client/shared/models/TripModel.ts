@@ -2,70 +2,24 @@ import { ILookupItem } from './LooupItem';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 export class TripModel {
-
-    constructor() {
-        this.tripId = 0;
-        this.groupName = null;
-        this.airportId = -1;
-        this.transTypeId = null;
-        this.tripDate = null;
-        this.groupSize = 0;
-        this.isActive = true;
-        this.note = null;
-
-        this.isNew = true;
-    }
-    static ref: any;
     tripId: number;
-    groupName: string;
+    tripDate: Date;
     airportId: number;
-    airport: ILookupItem;
+    airportInfo: ILookupItem;
     transTypeId: number;
     transTypeDesc: string;
-    tripDate: string;
-    tripDate_: NgbDate;
+    groupName: string;
     groupSize: number;
-    isActive = true;
-    note: string | null;
+    active: boolean;
+    note: string;
 
     isNew: boolean;
-    form: any;
-
-    static onGetAll(models: TripModel[]) {
-        for (let model of models) {
-            TripModel.onGet(model);
-        }
-     }
-
-    static onGet(model: TripModel) {
-        // model.tripDate_ = CrudUtils.isoToLocalDate(model.tripDate);
-        // model.transTypeId_ = CrudUtils.getLookupItem(CrudUtils.ref.transTypes, model.transTypeId);
-    }
-
-    static onSaveAll(models: TripModel[]) {
-        for (let model of models) {
-            TripModel.onSave(model);
-        }
-    }
-
-    static onSave(model: TripModel) {
-        // Add PK from a parent if master-detai;
-        //
-        // model.tripDate = CrudUtils.setDateIso(model.tripDate_);
-        // model.transTypeId_ = CrudUtils.getLookupItem(CrudUtils.ref.transTypes, model.transTypeId);
-    }
 }
 
 export class ModelWorker<T> {
-    model: T;
-    modelCopy: T;
-    list: T[];
-
-    constructor() {
-        this.model = null;
-        this.modelCopy = null;
-        this.list = [];
-    }
+    model: T | null = null;
+    modelCopy: T | null = null;
+    list: T[] = [];
 
     updateModel(model: T) {
         if (!this.model) {

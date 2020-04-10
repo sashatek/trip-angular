@@ -7,9 +7,9 @@
   <div *ngFor="let model of trip.list; let i = index" class="tripList">
     <h4>
       <b>{{model.tripDate | date : "MM/dd/yyyy"}} </b>
-      <b>{{model.airport?.text}}</b>
+      <b>{{model.airportInfo?.text}}</b>
     </h4>
-    {{model.airport?.text2}}
+    {{model.airportInfo?.text2}}
     <p>{{model.transTypeDesc}}</p>
     <p>{{model.groupName}} {{model.groupSize}}</p>
     <button type="button" class="btn btn-link" (click)="editTrip(model)">Edit</button>

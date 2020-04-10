@@ -79,7 +79,6 @@ export class TripModalComponent implements OnInit {
 
     newTrip() {
       let model = new TripModel();
-      TripModel.onGet(model);
       return model;
   }
 

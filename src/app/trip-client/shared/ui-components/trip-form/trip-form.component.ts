@@ -66,7 +66,7 @@ export class TripFormComponent implements OnInit {
   private initForm() {
     this.tripForm = this.fb.group({
       tripDate: [this.model.tripDate, Validators.required],
-      airport: [this.model.airport, Validators.required],
+      airportInfo: [this.model.airportInfo, Validators.required],
       transTypeId: [this.model.transTypeId, Validators.required],
       groupName: [this.model.groupName, Validators.required],
       groupSize: [this.model.groupSize, Validators.required]
@@ -76,7 +76,7 @@ export class TripFormComponent implements OnInit {
   saveTrip() {
     const a = this.tripForm.value;
     this.model = {...this.model, ...this.tripForm.value};
-    this.model.airport = {...this.tripForm.value.airport};
+    this.model.airportInfo = {...this.tripForm.value.airportInfo};
     this.save.emit(this.model);
     // this.tripForm.reset(this.model); TODO: chrck whether reset id nrrded
     // Object.keys(this.tripForm.controls).forEach(control => {
@@ -87,7 +87,7 @@ export class TripFormComponent implements OnInit {
   updateModel() {
       const data = this.tripForm.value as TripModel;
       this.model.tripDate = data.tripDate;
-      this.model.airport = data.airport;
+      this.model.airportInfo = data.airportInfo;
       this.model.transTypeId = data.transTypeId;
       this.model.groupName = data.groupName;
       this.model.groupSize = data.groupSize;

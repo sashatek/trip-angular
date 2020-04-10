@@ -11,7 +11,7 @@
             *ngFor="let model of trip.list; let i = index" (click)="editTrip(model)"
             [ngClass]="{'active': this.trip.model == model}">
             <div>
-              <h5>{{model.tripDate | date : "MM/dd/yyyy"}}, {{model.airport.text}} - {{model.airport.text2}}</h5>
+              <h5>{{model.tripDate | date : "MM/dd/yyyy"}}, {{model.airportInfo.text}} - {{model.airportInfo.text2}}</h5>
               <p>{{model.transTypeDesc}}, {{model.groupName}}</p>
             </div>
             <span class="badge badge-primary badge-pill">{{model.groupSize}}</span>

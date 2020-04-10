@@ -54,7 +54,7 @@ export class TripEntryGridComponent implements OnInit {
     private initFormItem(model: TripModel) {
         return this.fb.group({
             tripDate: [model.tripDate, Validators.required],
-            airport: [model.airport, Validators.required],
+            airportInfo: [model.airportInfo, Validators.required],
             transTypeId: [model.transTypeId, Validators.required],
             groupName: [model.groupName, Validators.required],
             groupSize: [model.groupSize, Validators.required]
@@ -106,7 +106,6 @@ export class TripEntryGridComponent implements OnInit {
 
     private addLine() {
         const model = new TripModel();
-        TripModel.onGet(model);
         this.trip.list.push(model);
         this.tripForms.push(this.initFormItem(model));
         return model;

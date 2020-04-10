@@ -82,7 +82,6 @@ export class TripNavToFormComponent implements OnInit {
 
     newTrip() {
       const model = new TripModel();
-      TripModel.onGet(model);
       return model;
     }
 

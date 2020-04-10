@@ -13,7 +13,7 @@
         <div class="form-group">
             <label for="airportId" class="control-label">Airport</label>
             <app-arpt-lookup (onArptSelect)='arptSelect($event)' 
-            [parentForm]="tripForm" [formFieldName]="'airport'">
+            [parentForm]="tripForm" [formFieldName]="'airportInfo'">
             </app-arpt-lookup>
         </div>
         <!-- <div class="form-group">
@@ -26,7 +26,7 @@
             <label for="transTypeId" class="control-label">Transportation</label>
             <select class="form-control" id="transType" required formControlName="transTypeId"
                 (change)="onTransTypeChange($event, model)" required>
-                <option *ngFor="let tran of refDataService.ref.transTypes" [ngValue]="tran.id">{{tran.text}}</option>
+                <option *ngFor="let tran of refDataService.refData.transTypes" [ngValue]="tran.id">{{tran.text}}</option>
             </select>
         </div>
         <div class="row">

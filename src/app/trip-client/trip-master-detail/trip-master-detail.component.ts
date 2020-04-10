@@ -79,7 +79,6 @@ export class TripMasterDetailComponent implements OnInit {
 
   newTrip() {
     const model = new TripModel();
-    TripModel.onGet(model);
     return model;
   }
 }

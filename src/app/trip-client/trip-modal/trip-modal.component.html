@@ -18,9 +18,9 @@
     </p> -->
     <h4>
       <b>{{model.tripDate | date : "MM/dd/yyyy"}} </b>
-      <b>{{model.airport?.text}}</b>
+      <b>{{model.airportInfo?.text}}</b>
     </h4>
-    {{model.airport?.text2}}
+    {{model.airportInfo?.text2}}
     <p>{{model.transTypeDesc}}</p>
     <p>{{model.groupName}} {{model.groupSize}}</p>
     <button type="button" class="btn btn-outline-primary btn-sm" (click)="edit(model)">Edit</button>
