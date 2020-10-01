@@ -29,17 +29,12 @@ export class RefDataService {
         this.refData = ref;
     }
 
-    lookup(term: string) {
-        // const url = `${this.globals.baseAppUrl}/api/Lookup/Iata/${term}`
-        const url = `${this.globals.baseApiUrl}Lookup/Iata/${term}`;
-        if (term === '') {
-            return of([]);
+    getRefDataById(refData: ILookupItem[], id: number){
+        for (const ref of refData) {
+            if (ref.id === id){
+                return ref;
+            }
         }
-
-        return this.http
-            .get<ILookupItem[]>(url).pipe(
-                map(response => response)
-            );
+        return null;
     }
-
 }

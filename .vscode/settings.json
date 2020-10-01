@@ -1,0 +1,10 @@
+{
+    "workbench.colorCustomizations": {
+        "[Visual Studio Light]": {
+            "sideBar.background": "#fefefe",
+             "sideBar.foreground": "#000000",
+             "editor.foreground": "#000000",
+             "gitDecoration.modifiedResourceForeground": "#472c04",
+        }
+    }
+}

@@ -11,74 +11,74 @@ import { RefDataService } from '../shared/web-services/ref-data.service';
 })
 
 export class TripMasterDetailComponent implements OnInit {
-  @ViewChild(TripFormComponent) private tripFormComponent: TripFormComponent;
+    @ViewChild(TripFormComponent) private tripFormComponent: TripFormComponent;
 
-  trip: ModelWorker<TripModel> = new ModelWorker();
-  closeResult: string;
+    trip: ModelWorker<TripModel> = new ModelWorker();
+    closeResult: string;
 
-  constructor(private tripService: TripService,
-              public refDataService: RefDataService, ) { }
+    constructor(private tripService: TripService,
+                public refDataService: RefDataService, ) { }
 
-  ngOnInit() {
-    this.getTrips();
-  }
-
-  getTrips() {
-    this.tripService.getAllTrips()
-      .subscribe(trips => this.onGetTrips(trips));
-  }
-
-  onGetTrips(trips: TripModel[]) {
-    this.trip.list = trips;
-  }
-
-  addTrip() {
-    const model = this.newTrip();
-    this.editTrip(model);
-  }
-
-  editTrip(model: TripModel) {
-    if (this.tripFormComponent && this.tripFormComponent.isDitry()) {
-      return;
+    ngOnInit() {
+      this.getTrips();
     }
-    // this.save(model);
-    this.trip.model = model;
-  }
 
-  saveTrip(model: TripModel) {
-    if (model.isNew) {
-      this.tripService.addTrip(model)
-        .subscribe(_ => {
-          // model.transTypeDesc = findRef(this.refService.ref.transTypes, model.transTypeId).text;
-          this.trip.list.unshift(model);
-        });
-    } else {
-      this.tripService.saveTrip(model)
+    getTrips() {
+      this.tripService.getAllTrips()
+        .subscribe(trips => this.onGetTrips(trips));
+    }
+
+    onGetTrips(trips: TripModel[]) {
+      this.trip.list = trips;
+    }
+
+    addTrip() {
+      const model = this.newTrip();
+      this.editTrip(model);
+    }
+
+    editTrip(model: TripModel) {
+      if (this.tripFormComponent && this.tripFormComponent.isDitry()) {
+        return;
+      }
+      // this.save(model);
+      this.trip.model = model;
+    }
+
+    saveTrip(model: TripModel) {
+      if (model.isNew) {
+        this.tripService.addTrip(model)
+          .subscribe(_ => {
+            // model.transTypeDesc = findRef(this.refService.ref.transTypes, model.transTypeId).text;
+            this.trip.list.unshift(model);
+          });
+      } else {
+        this.tripService.saveTrip(model)
+          .subscribe(_ => { });
+      }
+      this.trip.updateModel(model);
+    }
+
+    cancel(model: TripModel) {
+      // this.trip.model = this.trip.model;
+      // this.tripFormComponent.setModel(model);
+      this.trip.model = null;
+
+    }
+
+    deleteTrip(model: TripModel) {
+      if (!confirm('Are you sure you want to delete?')) {
+        return;
+      }
+
+      this.tripService.deleteTrip(model)
         .subscribe(_ => { });
-    }
-    this.trip.updateModel(model);
-  }
-
-  cancel(model: TripModel) {
-    // this.trip.model = this.trip.model;
-    // this.tripFormComponent.setModel(model);
-    this.trip.model = null;
-
-  }
-
-  deleteTrip(model: TripModel) {
-    if (!confirm('Are you sure you want to delete?')) {
-      return;
+      this.trip.list.splice(this.trip.list.indexOf(model), 1);
+      this.trip.model = null;
     }
 
-    this.tripService.deleteTrip(model)
-      .subscribe(_ => { });
-    this.trip.list.splice(this.trip.list.indexOf(model), 1);
-    this.trip.model = null;
+    newTrip() {
+      const model = new TripModel();
+      return model;
+    }
   }
-
-  newTrip() {
-    const model = new TripModel();
-    return model;
-  }
-}

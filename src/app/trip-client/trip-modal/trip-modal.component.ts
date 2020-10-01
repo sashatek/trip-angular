@@ -37,7 +37,7 @@ export class TripModalComponent implements OnInit {
     }
 
     addTrip() {
-      let model = this.newTrip();
+      const model = this.newTrip();
       this.edit(model);
   }
 
@@ -78,7 +78,7 @@ export class TripModalComponent implements OnInit {
     }
 
     newTrip() {
-      let model = new TripModel();
+      const model = new TripModel();
       return model;
   }
 

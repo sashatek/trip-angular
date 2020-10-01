@@ -7,50 +7,50 @@ import { ILookupItem } from '../../models/LooupItem';
 import { ArptLookupService } from '../../web-services/arpt-lookup.service';
 
 @Component({
-  selector: 'app-arpt-lookup',
+  selector: 'app-airport-lookup',
   templateUrl: './arpt-lookup.component.html',
   styleUrls: ['./arpt-lookup.component.css']
 })
 
 export class ArptLookupComponent implements OnInit {
-  searching = false;
-  searchFailed = false;
-  @Input() parentForm: FormGroup;
-  @Input() formFieldName: string;
+    searching = false;
+    searchFailed = false;
+    @Input() parentForm: FormGroup;
+    @Input() formFieldName: string;
 
-  @Output() onArptSelect = new EventEmitter<ILookupItem>();
+    @Output() airportSelect = new EventEmitter<ILookupItem>();
 
-  constructor(private arptService: ArptLookupService) { }
+    constructor(private arptService: ArptLookupService) { }
 
-  ngOnInit() {
-    // this.parentForm.addControl();
+    ngOnInit() {
+      // this.parentForm.addControl();
+    }
+
+    lookupArpt = (text$: Observable<string>) =>
+      text$.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.searching = true),
+        switchMap(term =>
+          this.arptService.lookup(term).pipe(
+            tap(() => this.searchFailed = false),
+            catchError(() => {
+              this.searchFailed = true;
+              return of([]);
+            }))
+        ),
+        tap(() => this.searching = false)
+      )
+
+      // formatter = (result: ILookupItem) => result.text;
+      formatter(result: ILookupItem): string {
+        return result.text + '   ' + result.text2;
+      }
+      formatterr(result: ILookupItem): string {
+        return result.text + ' ' + result.text2;
+      }
+
+      select(event: NgbTypeaheadSelectItemEvent) {
+        this.airportSelect.emit(event.item as ILookupItem);
+      }
   }
-
-  lookupArpt = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => this.searching = true),
-      switchMap(term =>
-        this.arptService.lookup(term).pipe(
-          tap(() => this.searchFailed = false),
-          catchError(() => {
-            this.searchFailed = true;
-            return of([]);
-          }))
-      ),
-      tap(() => this.searching = false)
-    )
-
-    // formatter = (result: ILookupItem) => result.text;
-    formatter(result: ILookupItem): string {
-      return result.text + '   ' + result.text2;
-    }
-    formatterr(result: ILookupItem): string {
-      return result.text + ' ' + result.text2;
-    }
-
-    select(event: NgbTypeaheadSelectItemEvent) {
-      this.onArptSelect.emit(event.item as ILookupItem);
-    }
-}

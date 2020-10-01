@@ -4,18 +4,17 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 export class TripModel {
     tripId: number;
     tripDate: Date;
-    airportId: number;
+    // airportId: number;
     airportInfo: ILookupItem;
     transTypeId: number;
     transTypeDesc: string;
     groupName: string;
     groupSize: number;
-    active: boolean;
-    note: string;
+    active = false;
+    note: string | null;
 
-    isNew: boolean;
+    isNew = true;
 }
-
 export class ModelWorker<T> {
     model: T | null = null;
     modelCopy: T | null = null;
@@ -33,29 +32,4 @@ export class ModelWorker<T> {
     }
 }
 
-// TODO: Deprecate
-//
-export class TripWorker {
-    model: TripModel;
-    modelCopy: TripModel;
-    list: TripModel[];
-    form: any;
 
-    constructor() {
-        this.model = null;
-        this.modelCopy = null;
-        this.list = [];
-        this.form = null;
-    }
-
-    updateModel(model: TripModel) {
-        if (!this.model) {
-            return;
-        }
-        const i = this.list.indexOf(this.model);
-        if (i >= 0) {
-            this.list[i] = model;
-            this.model = model;
-        }
-    }
-}

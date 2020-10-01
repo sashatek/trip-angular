@@ -1,0 +1,5 @@
+.listpane{
+    overflow-y: auto;
+    border:blue solid 1px;
+    height: calc(95vh - 110px);
+}

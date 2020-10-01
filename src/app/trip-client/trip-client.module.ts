@@ -13,6 +13,12 @@ import { Globals } from './shared/Globals';
 import { TripFormComponent } from './shared/ui-components/trip-form/trip-form.component';
 import { TripModalFormComponent } from './trip-modal/trip-modal-form.component';
 
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import {
+    faCoffee, faArrowLeft, faCalculator, faCocktail,
+    faUserTimes, faSpinner, faSquare, faSave, faTrash, faTrashAlt,
+    faCheck, faUndo, faUndoAlt, faTimes
+} from '@fortawesome/free-solid-svg-icons';
 
 
 @NgModule({
@@ -33,7 +39,8 @@ import { TripModalFormComponent } from './trip-modal/trip-modal-form.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
  ],
  exports: [
     TripClientComponent
@@ -42,4 +49,22 @@ import { TripModalFormComponent } from './trip-modal/trip-modal-form.component';
   entryComponents: [TripModalFormComponent]
 
 })
-export class TripClientModule { }
+export class TripClientModule {
+    constructor(library: FaIconLibrary) {
+        // Add an icon to the library for convenient access in other components
+        library.addIcons(faCoffee);
+        library.addIcons(faCocktail);
+        library.addIcons(faArrowLeft);
+        library.addIcons(faCalculator);
+        library.addIcons(faUserTimes);
+        library.addIcons(faSpinner);
+        library.addIcons(faSquare);
+        library.addIcons(faSave);
+        library.addIcons(faCheck);
+        library.addIcons(faTrash);
+        library.addIcons(faTrashAlt);
+        library.addIcons(faUndo);
+        library.addIcons(faUndoAlt);
+        library.addIcons(faTimes);
+    }
+ }

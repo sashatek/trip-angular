@@ -7,21 +7,22 @@ import { Globals } from '../Globals';
 import { ILookupItem } from '../models/LooupItem';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class LookupService {
+export class ArptLookupService {
 
     constructor(private http: HttpClient, private globals: Globals) { }
 
-    arptLookup(term: string) {
-      // const url = `${this.globals.baseAppUrl}/api/Lookup/Iata/${term}`
-      const url = `${this.globals.baseApiUrl}Lookup/Iata/${term}`;
-      if (term === '') {
-        return of([]);
-      }
+    lookup(term: string) {
+        // const url = `${this.globals.baseAppUrl}/api/Lookup/Iata/${term}`
+        const url = `${this.globals.baseApiUrl}Lookup/Iata/${term}`;
+        if (term === '') {
+            return of([]);
+        }
 
-      return this.http
-        .get<ILookupItem[]>(url).pipe(
-          map(response => response)
-        );
-    }}
+        return this.http
+            .get<ILookupItem[]>(url).pipe(
+                map(response => response)
+            );
+    }
+}

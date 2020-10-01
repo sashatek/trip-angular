@@ -16,11 +16,7 @@ import { NgbUTCStringAdapter, NgbDateFRParserFormatter } from '../shared/models/
   selector: 'app-trip-modal-form',
   templateUrl: './trip-modal-form.component.html',
   styleUrls: ['./trip-modal-form.component.css'],
-  encapsulation: ViewEncapsulation.None,
-  providers: [
-    {provide: NgbDateAdapter, useClass: NgbUTCStringAdapter},
-    {provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter}
-  ]
+  encapsulation: ViewEncapsulation.None
 })
 export class TripModalFormComponent implements OnInit {
   @ViewChild(TripFormComponent) private tripFormComponent: TripFormComponent;
@@ -55,41 +51,4 @@ export class TripModalFormComponent implements OnInit {
     return this.tripFormComponent.tripForm.valid;
   }
 
-  // Airport Lookup
-  //
-  arptSelect($event) {
-
-  }
-
-  lookupArpt = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      tap(() => this.searching = true),
-      switchMap(term =>
-        this.arptService.lookup(term).pipe(
-          tap(() => this.searchFailed = false),
-          catchError(() => {
-            this.searchFailed = true;
-            return of([]);
-          }))
-      ),
-      tap(() => this.searching = false)
-    )
-
-    selectIata(event: NgbTypeaheadSelectItemEvent) {
-      // this.modelChange.emit(event.item as ILookupItem);
-
-    }
-
-    formatter(result: ILookupItem): string {
-      return result.text; // + " " + result.text2;
-    }
-    formatterr(result: ILookupItem): string {
-      return result.text + ' ' + result.text2;
-    }
-
-    onTransTypeChange(event, model: TripModel) {
-      model.transTypeDesc = event.target.options[event.target.options.selectedIndex].text;
-    }
 }
