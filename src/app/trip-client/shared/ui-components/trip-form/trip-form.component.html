@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7 ">
+            <div class="col-md-8 ">
                 <div class="form-group">
                     <label for="groupName" class="control-label">Group Name</label>
                     <input id="groupName" type="text" class="form-control" formControlName="groupName" >
@@ -45,9 +45,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 ">
+            <div class="col-md-4 ">
                 <div class="form-group">
-                    <label for="groupSize" class="control-label">Group Size</label>
+                    <label for="groupSize" class="control-label">Size</label>
                     <input id="groupSize" type="number" class="form-control" formControlName="groupSize" >
                     <div *ngIf="f.groupSize.invalid && (f.groupSize.dirty || f.groupSize.touched)"
                         class="form-text text-danger">
@@ -55,14 +55,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 align-self-center">
-                <div class="form-check">
-                    <input id="active" type="checkbox" class="form-check-input" formControlName="active">
-                    <label class="form-check-label" for="active">Active</label>
-                </div>
-            </div>
         </div>
         <div class="form-group">
+            <div class="form-check">
+                <input id="active" type="checkbox" class="form-check-input" formControlName="active">
+                <label class="form-check-label" for="active">Active</label>
+            </div>
+        </div>
+   <div class="form-group">
             <label for="note" class="control-label">Note</label>
             <textarea id="note" type = "text" class="form-control" formControlName="note" rows="3" ></textarea>
         </div>

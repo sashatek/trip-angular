@@ -59,7 +59,7 @@ export class TripNavToFormComponent implements OnInit {
       }
 
       this.showForm = false;
-      this.trip.updateModel(model);
+      this.trip.updateModel(model); // TODO
     }
 
     cancel(model: TripModel) {

@@ -43,7 +43,7 @@ export class TripModalComponent implements OnInit {
 
     edit(model: TripModel) {
       this.trip.model = model;
-      const modalRef = this.modalService.open(TripModalFormComponent);
+      const modalRef = this.modalService.open(TripModalFormComponent, {backdrop: 'static'});
       modalRef.componentInstance.model = model;
       modalRef.result.then((result) => {
         this.save(result);
